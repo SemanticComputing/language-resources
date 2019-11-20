@@ -5,6 +5,7 @@ class TestTokenization(unittest.TestCase):
     def setUp(self):
         self.target = Tokenization()
 
+    # test tokenization of a string to words and punctuation
     def test_word_tokenization(self):
         testset = ["Sauli aloitti kilpailut 1. ja 55. mm. kassalla ja hän on aina maalissa 8:ntena.",
                     "Myös Timo T. A. Mikkonen on työskennellyt mm. linja-auto tjms. kuskina USA:ssa.",
@@ -42,7 +43,7 @@ class TestTokenization(unittest.TestCase):
                             ['Vuonna', '1971', 'vahvistettiin', 'ensimmäinen', 'SI-yksikköjärjestelmää', 'käsittelevä', 'suomalainen', 'standardi', '(', 'SFS', '2300', ')'],
                             ['nykyisin', 'SI-yksikköjärjestelmän', 'perusstandardi', '(', 'vrt.', 'στιγμὴ', 'τελεία', ')', 'on', 'maailmanlaajuinen', '(', 'SFS-EN', 'ISO', '80000-1', ')', '.'],
                             ['(', 'vrt.', 'στιγμὴ', 'τελεία', '[', '2', ']', ')'],
-                            ['Bordeaux’ssa', "d'Artagnan", 'ärähti', ':', '"', 'Äitis', 'oli!', '"', '.'],
+                            ['Bordeaux’ssa', "d'Artagnan", 'ärähti', ':', '"', 'Äitis', 'oli', '!', '"', '.'],
                             ['"', 'Tule', 'mukaan', '!', '"', 'hän', 'pyysi', '.'],
                             ['”', 'Ampui', 'mies', '”', ',', 'kirjoittaa', 'Aleksis', 'Kivi', ',', '”', 'ja', 'kiirahtipa', 'mesikämmen', 'nurmelle', 'nurin.', '”', '.'],
                             ['–', 'Terve', 'miestä', ',', 'sinä', 'Rajamäen', 'Mikko', '!', 'sanoi', 'Juhani', '.', '–', 'Kuinka', 'jaksat', 'ja', 'mitä', 'uutta', 'maailmalta', '?'],

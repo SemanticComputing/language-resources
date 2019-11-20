@@ -7,6 +7,8 @@ class Tokenization():
     def __init__(self):
         self.tokenizatior = self.setup_tokenizator()
 
+    # Setting up tokenizer for sentence tokenization
+    # TODO: see, if this can be also replaced with a regex tokenization, as this does not take into account special cases similar to word tokenization
     def setup_tokenizator(self):
         tokenizer = nltk.data.load('tokenizers/punkt/finnish.pickle')
         with open('abbreviations.csv') as csv_file:
@@ -22,6 +24,7 @@ class Tokenization():
         if text != None:
             return self.tokenizer.tokenize(text)
 
+    # tokenizing text to a list of tokens (words, punctuation, etc.)
     def word_tokenization(self, sent):
         pattern = r'''
                 (?x)                                                            # set flag to allow verbose regexps
