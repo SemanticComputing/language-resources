@@ -6,7 +6,6 @@ class TestTokenization(unittest.TestCase):
         self.target = Tokenization()
 
     def test_word_tokenization(self):
-        print("Run test")
         testset = ["Sauli aloitti kilpailut 1. ja 55. mm. kassalla ja hän on aina maalissa 8:ntena.",
                     "Myös Timo T. A. Mikkonen on työskennellyt mm. linja-auto tjms. kuskina USA:ssa.",
                     "Eduskuntaan A-, B- ja C-luokan ihmiset valitsivat Niinistön ensimmäisen kerran vuonna 1987.",
