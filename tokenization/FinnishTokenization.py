@@ -24,15 +24,15 @@ class Tokenization():
 
     def word_tokenization(self, sent):
         pattern = r'''
-                (?x)          # set flag to allow verbose regexps
-                (?:[A-ZÖÄÅa-zöäå]\.)+(?=\s)         # abbreviations(both upper and lower case, like "e.g.", "U.S.A.")
-                | (?:[0-9]+)(?=[.!?]\s+[A-ZÖÄÅ])         # order numbers at end of a sentence
-                | (?:[0-9]+\.)+(?=\s)         # order numbers
+                (?x)                                                            # set flag to allow verbose regexps
+                (?:[A-ZÖÄÅa-zöäå]\.)+(?=\s)                                     # abbreviations(both upper and lower case, like "e.g.", "U.S.A.")
+                | (?:[0-9]+)(?=[.!?]\s+[A-ZÖÄÅ])                                # order numbers at end of a sentence
+                | (?:[0-9]+\.)+(?=\s)                                           # order numbers
                 | (?:ao|eaa|em|eo|huom|jaa|jKr|jms|jne|ks|ma|ml|mrd|nk|no|ns|oto|puh|so|tjsp|tm|tms|tmv|ts|va|vrt|vs|vt|yo|mm|esim|ym|yms|eKr|tjms)\.  # abbreviations
-                | [/({\['"”».](?=\S)  # opening bracket/quotes
-                | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-][.]*) # case three punctuation marks: '... quoted!'.
-                # | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-]) # case two punctuation marks: ... (something).
-                | \S+(?=[.,;:?!(){}\[\]'"»”–-]+(?:\s|[.]|$)) # word with punctuation at end
+                | [/({\['"”».](?=\S)                                            # opening bracket/quotes
+                | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-][.]*)   # case three punctuation marks: '... quoted!'.
+                # | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-])     # case two punctuation marks: ... (something).
+                | \S+(?=[.,;:?!(){}\[\]'"»”–-]+(?:\s|[.]|$))                    # word with punctuation at end
                 | \w+(?=/\w+)
                 | \S+
         '''
