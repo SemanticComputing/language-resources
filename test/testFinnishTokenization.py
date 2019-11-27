@@ -45,7 +45,7 @@ class TestTokenization(unittest.TestCase):
                             ['(', 'vrt.', 'στιγμὴ', 'τελεία', '[', '2', ']', ')'],
                             ['Bordeaux’ssa', "d'Artagnan", 'ärähti', ':', '"', 'Äitis', 'oli', '!', '"', '.'],
                             ['"', 'Tule', 'mukaan', '!', '"', 'hän', 'pyysi', '.'],
-                            ['”', 'Ampui', 'mies', '”', ',', 'kirjoittaa', 'Aleksis', 'Kivi', ',', '”', 'ja', 'kiirahtipa', 'mesikämmen', 'nurmelle', 'nurin.', '”', '.'],
+                            ['”', 'Ampui', 'mies', '”', ',', 'kirjoittaa', 'Aleksis', 'Kivi', ',', '”', 'ja', 'kiirahtipa', 'mesikämmen', 'nurmelle', 'nurin', '.', '”', '.'],
                             ['–', 'Terve', 'miestä', ',', 'sinä', 'Rajamäen', 'Mikko', '!', 'sanoi', 'Juhani', '.', '–', 'Kuinka', 'jaksat', 'ja', 'mitä', 'uutta', 'maailmalta', '?'],
                             ['Läsnä', ':', 'Makkonen', ',', 'Matti', ';', 'Laakso', ',', 'Maija-Liisa', ';', 'Lahtinen-Virtanen', ',', 'Anna', ';', 'Virtanen', ',', 'Kalevi', '.'],
                             ['Ohjelmaa', 'oli', 'runsaasti', ':', 'kiertoajelu', 'kaupungin', 'keskustassa', ';', 'retkiä', 'taide', '-', 'ja', 'kotimuseoihin', ';', 'piknik', 'omenatarhassa', '.'],
