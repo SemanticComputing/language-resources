@@ -26,21 +26,7 @@ class Tokenization():
 
     # tokenizing text to a list of tokens (words, punctuation, etc.)
     def word_tokenization(self, sent):
-        oldpattern = r'''
-                (?x)                                                            # set flag to allow verbose regexps
-                (?:[A-ZÖÄÅa-zöäå]\.)+(?=\s)                                     # abbreviations(both upper and lower case, like "e.g.", "U.S.A.")
-                | (?:[0-9]+)(?=[.!?]\s+[A-ZÖÄÅ])                                # order numbers at end of a sentence
-                | (?:[0-9]+\.)+(?=\s)                                           # order numbers
-                | (?:ao|eaa|em|eo|huom|jaa|jKr|jms|jne|ks|ma|ml|mrd|nk|no|ns|oto|puh|so|tjsp|tm|tms|tmv|ts|va|vrt|vs|vt|yo|mm|esim|ym|yms|eKr|tjms)\.  # abbreviations
-                | [/({\['"”».](?=\S)                                            # opening bracket/quotes
-                | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-][.]*)   # case three punctuation marks: '... quoted!'.
-                # | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-])     # case two punctuation marks: ... (something).
-                | \S+(?=[.,;:?!(){}\[\]'"»”–-]+(?:\s|[.]|$))                    # word with punctuation at end
-                | \w+(?=/\w+)
-                | \S+
-        '''
         added = self.compile_pattern()
-        print("New pattern:", added)
 
         pattern = r'''(?x)          # set flag to allow verbose regexps
                 (?:[A-ZÖÄÅa-zöäå]\.)+(?=\s)         # abbreviations(both upper and lower case, like "e.g.", "U.S.A.")
@@ -62,7 +48,6 @@ class Tokenization():
         pattern = '(?:$abbr)\.'
         with open('abbreviations.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=';')
-            #for row in csv_reader:
             pattern = pattern.replace('$abbr',"|".join(['{0}'.format(x[0]) for x in csv_reader]))
         if '$abbr' in pattern:
             pattern = '(?:ao|eaa|em|eo|huom|jaa|jKr|jms|jne|ks|ma|ml|mrd|nk|no|ns|oto|puh|so|tjsp|tm|tms|tmv|ts|va|vrt|vs|vt|yo|mm|esim|ym|yms|eKr|tjms)\.'
