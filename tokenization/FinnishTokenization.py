@@ -35,8 +35,8 @@ class Tokenization():
                 | $abbr  # abbreviations
                 | [/({\['"”».](?=\S)  # opening bracket/quotes
                 | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-][.]) # case three punctuation marks: '... quoted!'.
-                | (?:\S+)(?=[.,;:?!(){}\[\]'"»”–-][.,;:?!(){}\[\]'"»”–-]) # case two punctuation marks: ... (something).
-                | \S+(?=[.,;:?!(){}\[\]'"»”–-]+(?:\s|[.]|$)) # word with punctuation at end
+                | (?:\S+)(?=[.,;:?!(){}\[\]'"»”][.,;:?!(){}\[\]'"»”–-]) # case two punctuation marks: ... (something).
+                | \S+(?=[.,;:?!(){}\[\]'"»”]+(?:\s|[.]|$)) # word with punctuation at end
                 | \w+(?=/\w+) # case: naimisissa/naimaton/leski ...
                 | \S+
             '''

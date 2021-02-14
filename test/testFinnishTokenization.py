@@ -27,17 +27,22 @@ class TestTokenization(unittest.TestCase):
                     "Läsnä: Makkonen, Matti; Laakso, Maija-Liisa; Lahtinen-Virtanen, Anna; Virtanen, Kalevi.",
                     "Ohjelmaa oli runsaasti: kiertoajelu kaupungin keskustassa; retkiä taide- ja kotimuseoihin; piknik omenatarhassa.",
                     "naimisissa/naimaton/leski/eronnut",
-                    "Vedotaan §:ään 6!"
+                    "Vedotaan §:ään 6!",
+                    "Kissa- ja koiraihmiset ovat erilaisia.",
+                    "Kymmenen kärjen ulkopuolelle jäivät Supercellistä lisäksi täpärästi Lassi Leppinen (11.) ja Lasse Louhento (18.).",
+                    "”Korkeimman oikeuden presidentti on yleensä tällaisen saanut. Luulen, että lähtökohtana merkille oli korkea virka. Ei ole vailla merkitystä, että virkaa voi hoitaa hyvin tai sitten vähän huonommin”, hän pohtii.",
+                    "26.8.1987/3230 KHO:1987-A-17", # 3230 KHO:1987-A-17
+                    "Ed. Lampinen, ole hiljaa! Nyt puhuu ed. Koskinen."
                     # HTML-tägit ?
                     ]
         expected_results =  [['Sauli', 'aloitti', 'kilpailut', '1.', 'ja', '55.', 'mm.', 'kassalla', 'ja', 'hän', 'on', 'aina', 'maalissa', '8:ntena', '.'],
                             ['Myös', 'Timo', 'T.', 'A.', 'Mikkonen', 'on', 'työskennellyt', 'mm.', 'linja-auto', 'tjms.', 'kuskina', 'USA:ssa', '.'],
-                            ['Eduskuntaan', 'A', '-', ',', 'B', '-', 'ja', 'C-luokan', 'ihmiset', 'valitsivat', 'Niinistön', 'ensimmäisen', 'kerran', 'vuonna', '1987', '.'],
+                            ['Eduskuntaan', 'A-', ',', 'B-', 'ja', 'C-luokan', 'ihmiset', 'valitsivat', 'Niinistön', 'ensimmäisen', 'kerran', 'vuonna', '1987', '.'],
                             ['Vapaa-aikanaan', 'Timo', 'T.A.', 'Mikkonen', 'mm.', 'lentelee', 'NH-90:llä', '-30°C:n', 'pakkasessa', '!'],
                             ['Hänet', 'valittiin', 'uudelleen', '{', 'tasavallan', 'presidentiksi', '}', '2018', '?', 'Toinen', 'kausi', 'alkoi', '1.2.2018', '.'],
                             ['Fahrenheit', 'on', 'termodynaaminen', 'lämpötila-asteikko', ',', 'jossa', 'veden', 'jäätymispiste', 'on', '32', 'astetta', 'Fahrenheitia', '(', '°F', ')', 'ja', 'kiehumispiste', '212', '°F', '(', 'normaalissa', 'ilmanpaineessa', ')', '.'],
                             ['Lämpötilaero', '1', '°F', 'vastaa', '0,556', '°C', 'lämpötilaeroa', '.'],
-                            ['Mittayksikkö', 'aine', '-', 'ja', 'tarviketiedoissa', ':', 'Näissä', 'tiedoissa', 'on', 'käytössä', 'ainoastaan', 'yksi', 'mittayksikkö', '(', 'ja', 'yksi', 'määrätieto', ')', 'hyödykenimikettä', 'kohden', '.'],
+                            ['Mittayksikkö', 'aine-', 'ja', 'tarviketiedoissa', ':', 'Näissä', 'tiedoissa', 'on', 'käytössä', 'ainoastaan', 'yksi', 'mittayksikkö', '(', 'ja', 'yksi', 'määrätieto', ')', 'hyödykenimikettä', 'kohden', '.'],
                             ['Tällöin', 'on', 'mielekkäämpää', 'puhua', 'esimerkiksi', 'pikonewtoneista', 'pN', '(', '1', 'pN=10-12', 'N', ')', '.'],
                             ['Aikaisemmin', '(', 'vuonna', '1954', ')', 'kelvin', 'oli', 'määritelty', '[', 'lämpötilan', ']', 'yksiköksi', ',', 'joka', 'oli', '1', '/', '273,16', 'termodynaamisesta', 'lämpötilasta', 'veden', 'kolmoispisteessä', '.'],
                             ['Vuonna', '1971', 'vahvistettiin', 'ensimmäinen', 'SI-yksikköjärjestelmää', 'käsittelevä', 'suomalainen', 'standardi', '(', 'SFS', '2300', ')'],
@@ -48,9 +53,14 @@ class TestTokenization(unittest.TestCase):
                             ['”', 'Ampui', 'mies', '”', ',', 'kirjoittaa', 'Aleksis', 'Kivi', ',', '”', 'ja', 'kiirahtipa', 'mesikämmen', 'nurmelle', 'nurin', '.', '”', '.'],
                             ['–', 'Terve', 'miestä', ',', 'sinä', 'Rajamäen', 'Mikko', '!', 'sanoi', 'Juhani', '.', '–', 'Kuinka', 'jaksat', 'ja', 'mitä', 'uutta', 'maailmalta', '?'],
                             ['Läsnä', ':', 'Makkonen', ',', 'Matti', ';', 'Laakso', ',', 'Maija-Liisa', ';', 'Lahtinen-Virtanen', ',', 'Anna', ';', 'Virtanen', ',', 'Kalevi', '.'],
-                            ['Ohjelmaa', 'oli', 'runsaasti', ':', 'kiertoajelu', 'kaupungin', 'keskustassa', ';', 'retkiä', 'taide', '-', 'ja', 'kotimuseoihin', ';', 'piknik', 'omenatarhassa', '.'],
+                            ['Ohjelmaa', 'oli', 'runsaasti', ':', 'kiertoajelu', 'kaupungin', 'keskustassa', ';', 'retkiä', 'taide-', 'ja', 'kotimuseoihin', ';', 'piknik', 'omenatarhassa', '.'],
                             ['naimisissa', '/', 'naimaton', '/', 'leski', '/', 'eronnut'],
-                            ['Vedotaan', '§:ään', '6', '!']]
+                            ['Vedotaan', '§:ään', '6', '!'],
+                            ['Kissa-', 'ja', 'koiraihmiset', 'ovat', 'erilaisia', '.'],
+                            ['Kymmenen', 'kärjen', 'ulkopuolelle', 'jäivät', 'Supercellistä', 'lisäksi', 'täpärästi', 'Lassi', 'Leppinen', '(', '11.', ')', 'ja', 'Lasse', 'Louhento', '(', '18.', ')', '.'],
+                            ['”', 'Korkeimman', 'oikeuden', 'presidentti', 'on', 'yleensä', 'tällaisen', 'saanut', '.', 'Luulen', ',', 'että', 'lähtökohtana', 'merkille', 'oli', 'korkea', 'virka', '.', 'Ei', 'ole', 'vailla', 'merkitystä', ',', 'että', 'virkaa', 'voi', 'hoitaa', 'hyvin', 'tai', 'sitten', 'vähän', 'huonommin', '”', ',', 'hän', 'pohtii', '.'],
+                            ['26.8.1987/3230', 'KHO:1987-A-17'],
+                            ['Ed.', 'Lampinen', ',', 'ole', 'hiljaa', '!', 'Nyt', 'puhuu', 'ed.', 'Koskinen', '.']]
 
         for text, result in zip(testset, expected_results):
             self.assertEqual(self.target.word_tokenization(text), result)
